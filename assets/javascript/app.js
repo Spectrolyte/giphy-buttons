@@ -14,23 +14,40 @@ $(document).ready(function () {
 	$('.data-search').click(function () {
 	// populate gifs for that search term in the gifs section with rating
 	var search = $(this).attr('data-value');
-	var queryUrl = 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=z0JZAoMoAgksWJ8DjBubu52HCcZD3Wbt&limit=10';
+	var queryUrl = 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=z0JZAoMoAgksWJ8DjBubu52HCcZD3Wbt&limit=5';
 		// ajax call
 		$.ajax({
 			url: queryUrl,
 			method: 'GET'
-		// iterate over each gif from the response
-			// src attr is still image by default, then changed to animate
-			// animate value is the gif -- fixed-height
-			// still value is a still image -- fixed-height-still
-			// state value indicates if the gif is in animation or not
 		}).done(function (response) {
 			var results = response.data;
+			// iterate over each gif from the response
 			for (var i=0; i < results.length; i++) {
+				var gif = results[i];
+
 				var gifDiv = $('<div>');
-				gifDiv.append('Rating :' + results[i].rating);
+				var gifImg = $('<img>');
+
+				// rating above the presented gif
+				gifDiv.append('Rating :' + gif.rating);
+
+				// add still image of gif -- default
+				gifImg.attr('src', gif.images.fixed_height_still.url);
+
+				// still value is a still image -- fixed-height-still
+				gifImg.attr('data-still', gif.images.fixed_height_still.url);
+
+				// animate value is the gif -- fixed-height
+				gifImg.attr('data-animate', gif.images.fixed_height.url);
+
+				// state value indicates if the gif is in animation or not
+				gifImg.attr('data-status', 'still');
+
+				// add gif image tag to the gif div
+				gifDiv.append(gifImg);
+
 				// append new div containing rating and gif to gif section
-				$('.gifs').append(gifDiv);
+				$('.gifs').prepend(gifDiv);
 			}
 
 		})
