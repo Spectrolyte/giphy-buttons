@@ -14,15 +14,19 @@ $(document).ready(function () {
 			btn.text(searchTerms[i]);
 			$('.buttons').append(btn);
 		}
+		// adds event listener to reproduced buttons
+		generateGifs();
 	}
 
 	generateBtns();
 	
 // when button is clicked:
+function generateGifs () {
 	$('.data-search').click(function () {
 	// populate gifs for that search term in the gifs section with rating
 	var search = $(this).attr('data-value');
 	var queryUrl = 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=z0JZAoMoAgksWJ8DjBubu52HCcZD3Wbt&limit=10';
+	console.log('hello');
 		// ajax call
 		$.ajax({
 			url: queryUrl,
@@ -69,6 +73,7 @@ $(document).ready(function () {
 				$('.data-gif').mouseenter(toggle).mouseleave(toggle);
 		});	
 	});
+}
 
 	function toggle () {
 		var state = $(this).attr('data-status');
@@ -95,7 +100,7 @@ $('.search').click(function (event) {
 	var userInput = $('#search-query').val();
 	searchTerms.push(userInput);
 	generateBtns();
-})
+});
 
 
 
