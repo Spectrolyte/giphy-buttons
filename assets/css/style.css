@@ -1,0 +1,25 @@
+body {
+	text-align: center;
+	font-family: 'Bubbler One', sans-serif;
+	background-image: url('https://i.pinimg.com/736x/91/c6/e3/91c6e349a380893b7f788f86516be3f5--decor-teaching.jpg');
+}
+
+hr, .panel {
+	border-color: #009BD8;
+}
+
+.page-header {
+	font-family: 'Delius Unicase', cursive;
+	font-size: 50px;
+	border-color: transparent;
+}
+
+.buttons, .gifs {
+	width: 500px;
+    height: 500px;
+    overflow: scroll;
+}
+
+.data-search {
+	margin-right: 5px;
+}

@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>GIF-Generator</title>
+	<title>Gif Generator</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Bubbler+One|Delius+Unicase" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 </head>
 <body>
 	<!-- header -->
 	<div class="page-header">
-	  <h1>GIF Generator</h1>
+	  Gifs in a Jiffy
 	</div>
 	<!-- container -->
 	<div class='container'>
@@ -22,19 +23,25 @@
 				<div class="userForm row">
 					<form>
 					  <div class="form-group">
+					  	<h4>Type in any search term you desire! Click its button below and watch the gifs appear. To see the gifs in action, hover over them with your mouse!</h4>
+					  	<hr>
 					    <label for="searchTerms">Search for GIFs</label>
 					    <input type="searchQuery" class="form-control" id="search-query" placeholder="">
 					  </div>
 					  <button type="submit" class="search btn btn-default">Submit</button>
 					</form>
 				</div>
+				<hr>
 				<div class="buttons row">
 				<!-- populate buttons here -->
 				</div>
 			</section>
 			<!-- gif section (add scrolling) -->
-			<section class='gifs col-md-6'>
+			<section class='col-md-6'>
 				<!-- populate gifs here -->
+				<div class="gifs panel panel-primary">
+				<h3>Your gifs will appear here!</h3>
+				</div>
 			</section>
 		</div>
 	</div>
