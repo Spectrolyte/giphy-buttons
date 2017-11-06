@@ -2,14 +2,22 @@ $(document).ready(function () {
 // display default buttons
 	// default buttons are search terms as an array of strings
 	var searchTerms = ['pikachu','eevee','mudkip','emilia clarke'];
-	// create loop to iterate over entire array and display buttons in button section
-	for (var i=0; i < searchTerms.length; i++) {
-		var btn = $('<button>');
-		btn.attr('class','data-search');
-		btn.attr('data-value', searchTerms[i]);
-		btn.text(searchTerms[i]);
-		$('.buttons').append(btn);
+
+	function generateBtns () {
+		// prevents repeat btns
+		$('.buttons').empty();
+		// create loop to iterate over entire array and display buttons in button section
+		for (var i=0; i < searchTerms.length; i++) {
+			var btn = $('<button>');
+			btn.attr('class','data-search');
+			btn.attr('data-value', searchTerms[i]);
+			btn.text(searchTerms[i]);
+			$('.buttons').append(btn);
+		}
 	}
+
+	generateBtns();
+	
 // when button is clicked:
 	$('.data-search').click(function () {
 	// populate gifs for that search term in the gifs section with rating
@@ -82,4 +90,23 @@ $(document).ready(function () {
 		// capture input value and add to search term array
 		// empty button section
 		// loop over search term array to recreate buttons
+$('.search').click(function (event) {
+	event.preventDefault();
+	var userInput = $('#search-query').val();
+	searchTerms.push(userInput);
+	generateBtns();
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 })

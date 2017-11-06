@@ -17,9 +17,20 @@
 	<div class='container'>
 		<div class='row'>
 			<!-- button section (add scrolling for buttons only) -->
-			<section class='buttons col-md-6'>
+			<section class='col-md-6'>
 				<!-- form that takes in user search term and submits -->
+				<div class="userForm row">
+					<form>
+					  <div class="form-group">
+					    <label for="searchTerms">Search for GIFs</label>
+					    <input type="searchQuery" class="form-control" id="search-query" placeholder="">
+					  </div>
+					  <button type="submit" class="search btn btn-default">Submit</button>
+					</form>
+				</div>
+				<div class="buttons row">
 				<!-- populate buttons here -->
+				</div>
 			</section>
 			<!-- gif section (add scrolling) -->
 			<section class='gifs col-md-6'>
