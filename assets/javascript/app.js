@@ -1,7 +1,7 @@
 $(document).ready(function () {
 // display default buttons
 	// default buttons are search terms as an array of strings
-	var searchTerms = ['pikachu','eevee','mudkip'];
+	var searchTerms = ['pikachu','eevee','mudkip','emilia clarke'];
 	// create loop to iterate over entire array and display buttons in button section
 	for (var i=0; i < searchTerms.length; i++) {
 		var btn = $('<button>');
@@ -14,12 +14,15 @@ $(document).ready(function () {
 	$('.data-search').click(function () {
 	// populate gifs for that search term in the gifs section with rating
 	var search = $(this).attr('data-value');
-	var queryUrl = 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=z0JZAoMoAgksWJ8DjBubu52HCcZD3Wbt&limit=5';
+	var queryUrl = 'http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=z0JZAoMoAgksWJ8DjBubu52HCcZD3Wbt&limit=10';
 		// ajax call
 		$.ajax({
 			url: queryUrl,
 			method: 'GET'
 		}).done(function (response) {
+			// empty gif section -- want to replace old gifs with the new ones
+			$('.gifs').empty();
+
 			var results = response.data;
 			// iterate over each gif from the response
 			for (var i=0; i < results.length; i++) {
@@ -29,7 +32,10 @@ $(document).ready(function () {
 				var gifImg = $('<img>');
 
 				// rating above the presented gif
-				gifDiv.append('Rating :' + gif.rating);
+				gifDiv.append('Rating :' + gif.rating + '<br>');
+
+				// add class to distinguish gifs
+				gifImg.attr('class', 'data-gif');
 
 				// add still image of gif -- default
 				gifImg.attr('src', gif.images.fixed_height_still.url);
@@ -46,29 +52,34 @@ $(document).ready(function () {
 				// add gif image tag to the gif div
 				gifDiv.append(gifImg);
 
-				// append new div containing rating and gif to gif section
+				// add new div containing rating and gif to gif section
 				$('.gifs').prepend(gifDiv);
 			}
 
-		})
-			
-		// when a new button is clicked, replace the existing gifs with the new ones
-			// ajax call
-			// empty gif section
-			// append new div containing new gif content
-	})
+				// when mouse hovers on the still image, animate to gif
+				// when mouse hovers off the gif, change to still image
+				$('.data-gif').mouseenter(toggle).mouseleave(toggle);
+		});	
+	});
+
+	function toggle () {
+		var state = $(this).attr('data-status');
+		console.log(state);
+		// if state is still, change state to animate and src to data-animate
+		if (state === 'still') {
+			$(this).attr('src',$(this).attr('data-animate'));
+			$(this).attr('data-status','animate');
+		}
+		// else, change src to data-still
+		else {
+			$(this).attr('src',$(this).attr('data-still'));
+			$(this).attr('data-status','still');
+		}
+	}
+
 // user form
 	// when user submits form:
 		// capture input value and add to search term array
 		// empty button section
 		// loop over search term array to recreate buttons
-
-
-
-
-
-
-
-
-
 })
